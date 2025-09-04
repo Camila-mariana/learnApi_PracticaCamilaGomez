@@ -101,11 +101,11 @@ public class JwtCookieAuthFilter extends OncePerRequestFilter {
     }
 
     private String extractTokenFromCookies(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
+        Cookie[] cookies = request.getCookies(); //obtiene lo q esta detro de la cookie
         if (cookies == null) return null;
 
         return Arrays.stream(cookies)
-                .filter(c -> AUTH_COOKIE_NAME.equals(c.getName()))
+                .filter(c -> AUTH_COOKIE_NAME.equals(c.getName())) //si la cookie no contiene AUTH_COOKIE_NAME esta mal
                 .findFirst()
                 .map(Cookie::getValue)
                 .orElse(null);
@@ -120,8 +120,8 @@ public class JwtCookieAuthFilter extends OncePerRequestFilter {
 
     // MEJORADA: Lógica para endpoints públicos
     private boolean isPublicEndpoint(HttpServletRequest request) {
-        String path = request.getRequestURI();
-        String method = request.getMethod();
+        String path = request.getRequestURI(); //el mapping y el url del endpoint
+        String method = request.getMethod(); //el metodo que se realizara
 
         // Endpoints públicos
         return (path.equals("/api/auth/login") && "POST".equals(method)) ||
