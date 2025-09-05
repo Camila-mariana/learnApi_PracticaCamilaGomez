@@ -12,7 +12,7 @@ public class Argon2Password {
     private static final int PARALLELISM = 2;
 
     //Crear una instancia
-    private Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2i);
+    private Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
 
     public String EncryptPassword(String password){
         return argon2.hash(ITERATIONS, MEMORY, PARALLELISM, password);

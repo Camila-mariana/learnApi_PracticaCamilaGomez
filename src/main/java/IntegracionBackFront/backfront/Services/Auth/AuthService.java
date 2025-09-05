@@ -23,7 +23,7 @@ public class AuthService {
             System.out.println("Usuario ID encontrado: " + usuario.getId() +
                     ", email: " + usuario.getCorreo() +
                     ", rol: " + nombreTipoUsuario);
-
+            System.out.println(objHash.VerifyPassword(usuario.getContrasena(), contrasena));
             //Obtener la clave del usuario que esta en la base
             return objHash.VerifyPassword(usuario.getContrasena(), contrasena);
         }
